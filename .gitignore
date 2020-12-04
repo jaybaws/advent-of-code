@@ -10,7 +10,7 @@
 *.tar.gz
 *.rar
 hs_err_pid*
-#target/
+target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
