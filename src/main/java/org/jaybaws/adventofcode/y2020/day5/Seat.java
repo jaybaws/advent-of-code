@@ -25,20 +25,12 @@ public class Seat {
         col = c;
     }
 
-    public int getRow() {
-        return row;
-    }
-
-    public int getColumn() {
-        return col;
-    }
-
     public int getSeatId() {
-        return (getRow() * 8) + getColumn();
+        return (row * 8) + col;
     }
 
     @Override
     public String toString() {
-        return String.format("Seat(%d) has row(%d), col(%d).", getSeatId(), getRow(), getColumn());
+        return String.format("Seat(%d) has row(%d), col(%d).", getSeatId(), row, col);
     }
 }
