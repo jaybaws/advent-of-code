@@ -6,6 +6,7 @@ import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
+@Deprecated
 public class Puzzle1 {
 
     static final String[] requiredFields = { "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid" };
