@@ -52,5 +52,9 @@ public class Y2020D7PuzzleTest {
         Assert.assertEquals(126, puzzle.solution2());
     }
 
-
+    @Test
+    public void part2_atual_validationTest() {
+        Puzzle puzzle = new Y2020D7Puzzle();
+        Assert.assertEquals(172246, puzzle.solution2());
+    }
 }

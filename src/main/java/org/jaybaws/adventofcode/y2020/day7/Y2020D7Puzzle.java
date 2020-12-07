@@ -18,9 +18,11 @@ public class Y2020D7Puzzle extends BasePuzzle {
         bags = new HashMap<String, Bag>();
         for (String line : puzzleInput) {
             String[] splitLine = line.split(" bags contain ");
+
             String bagColor =  splitLine[0];
             String bagContents = splitLine[1];
             Bag thisBag = new Bag(bagColor);
+
             if (!bags.containsKey(bagColor)) {
                 bags.put(bagColor, thisBag);
             } else {
@@ -69,5 +71,4 @@ public class Y2020D7Puzzle extends BasePuzzle {
         System.out.println(String.format("How many bag colors can eventually contain at least one shiny gold bag? Well, this: %d.", puzzle.solution1()));
         System.out.println(String.format("How many individual bags are required inside your single shiny gold bag? Well, this: %d.", puzzle.solution2()));
     }
-
 }
