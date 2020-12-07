@@ -25,5 +25,4 @@ public class Y2020D6PuzzleTest {
         Assert.assertEquals(6, tp.solution2());
     }
 
-
 }
