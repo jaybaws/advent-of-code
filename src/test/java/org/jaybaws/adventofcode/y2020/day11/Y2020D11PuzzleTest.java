@@ -30,7 +30,8 @@ public class Y2020D11PuzzleTest {
     @Test
     public void part2_actual_validationTest() {
         Puzzle p = new Y2020D11Puzzle();
-        Assert.fail();
+        Assert.assertEquals(2138, p.solution2());
+
     }
 
 }

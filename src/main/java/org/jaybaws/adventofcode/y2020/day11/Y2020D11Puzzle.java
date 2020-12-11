@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class Y2020D11Puzzle extends BasePuzzle {
 
-    private static final boolean TRACE = true;
+    private static final boolean TRACE = false;
 
     private static final char emptySeat = 'L';
     private static final char occupiedSeat = '#';
@@ -217,6 +217,7 @@ public class Y2020D11Puzzle extends BasePuzzle {
 
     @Override
     public Integer solution2() {
+        prepare(); // ASSURE WE'RE WORKING OF FRESH INPUT, AND NOT OF Q1 OUTPUT!
 
         if (TRACE)
             printSeatMap("", "--> " + totalOccupiedSeatCount());
@@ -250,6 +251,7 @@ public class Y2020D11Puzzle extends BasePuzzle {
         Puzzle puzzle = new Y2020D11Puzzle();
 
         System.out.println(String.format("[q1] How many seats end up occupied? Well, this: %d.", puzzle.solution1()));
+
         System.out.println(String.format("[q2] Given the new rules, how many seats end up occupied? Well, this: %d.", puzzle.solution2()));
     }
 
