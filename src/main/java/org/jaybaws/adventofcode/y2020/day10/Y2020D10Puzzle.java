@@ -1,83 +1,77 @@
-package org.jaybaws.adventofcode.y2020.day9;
+package org.jaybaws.adventofcode.y2020.day10;
 import org.jaybaws.adventofcode.*;
 import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Y2020D9Puzzle extends BasePuzzle {
+public class Y2020D10Puzzle extends BasePuzzle {
 
-    private int preambleSize = 25;
-    private List<BigInteger> series;
+    private static boolean TRACE = true;
 
-    public Y2020D9Puzzle(List<String> altInput, int preambleSize) {
+    public Y2020D10Puzzle(List<String> altInput) {
         super(altInput);
-        this.preambleSize = preambleSize;
     }
 
-    public Y2020D9Puzzle() { super(); }
+    public Y2020D10Puzzle() { super(); }
+
+    protected List<Integer> data;
+
+    private void addDifference(Integer difference, Map<Integer, Integer> diffList) {
+        if (diffList.containsKey(difference)) {
+            diffList.put(difference, diffList.get(difference) + 1);
+        } else {
+            diffList.put(difference, 1);
+        }
+    }
 
     @Override
     protected void prepare() {
-        series = puzzleInput.stream().map( s -> new BigInteger(s) ).collect(Collectors.toList());
+        data = puzzleInput.stream().map(Integer::valueOf).sorted().collect(Collectors.toList());
     }
 
     @Override
-    public BigInteger solution1() {
-        for (int i = preambleSize; i < series.size(); i++) {
-            BigInteger val = series.get(i);
-            List<BigInteger> preamble = series.subList(i - preambleSize, i);
-            List<BigInteger> sums = new ArrayList<BigInteger>();
-            for (BigInteger p1 : preamble) {
-                for (BigInteger p2 : preamble) {
-                    if (!p1.equals(p2))
-                        sums.add(p1.add(p2));
-                }
-            }
-
-            if (!sums.contains(val))
-                return val;
+    public Integer solution1() {
+        Map<Integer, Integer> differences = new HashMap<Integer, Integer>();
+        for (int i = 0; i < data.size(); i++) {
+            Integer diff = (i == 0) ? data.get(i) : data.get(i) - data.get(i - 1);
+            addDifference(diff, differences);
         }
-        return null;
-    }
+        addDifference(3, differences);
 
-    public static BigInteger add(BigInteger a, BigInteger b) {
-        return a.add(b);
-    }
-
-    public  static BigInteger sum(List<BigInteger> l) {
-        return l.stream().reduce(BigInteger.ZERO, Y2020D9Puzzle::add);
+        return differences.get(1) * differences.get(3);
     }
 
     @Override
     public BigInteger solution2() {
-        return solution2(solution1());
-    }
+        List<Integer> dots = new ArrayList<Integer>(data);
+        dots.add(0);
+        dots = dots.stream().sorted().collect(Collectors.toList());
 
-    public BigInteger solution2(BigInteger target) {
-        for (int i = 0; i < series.size(); i++) {
-            for (int j = i; j <= series.size(); j++) {
+        BigInteger[] dp = new BigInteger[dots.size()];
+        dp[0] = BigInteger.ONE;
+        dp[1] = BigInteger.ONE;
 
-                List<BigInteger> subList = series.subList(i, j);
-                BigInteger theSum = sum(subList);
-
-                if (theSum.compareTo(target) == 0) {
-                    BigInteger smallest = Collections.min(subList);
-                    BigInteger largest = Collections.max(subList);
-
-                    return smallest.add(largest);
-
+        for (int i = 2; i < dp.length; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (dots.get(i) - dots.get(j)  <= 3) {
+                    BigInteger a = (dp[i] == null) ? BigInteger.ZERO : dp[i];
+                    BigInteger b = (dp[j] == null) ? BigInteger.ZERO : dp[j];
+                    dp[i] = a.add(b);
+                } else {
+                    break;
                 }
-             }
+            }
         }
 
-        return null;
+        return dp[dp.length - 1];
+
     }
 
     public static void main(String[] args) {
-        Puzzle puzzle = new Y2020D9Puzzle();
+        Puzzle puzzle = new Y2020D10Puzzle();
 
-        System.out.println(String.format("What is the first number that does not have this property? Well, this: %d.", puzzle.solution1()));
-        System.out.println(String.format("What is the encryption weakness in your XMAS-encrypted list of numbers? Well, this: %d.", puzzle.solution2()));
+        System.out.println(String.format("What is the number of 1-jolt differences multiplied by the number of 3-jolt differences? Well, this: %d.", puzzle.solution1()));
+        System.out.println(String.format("What is the total number of distinct ways you can arrange the adapters to connect the charging outlet to your device? Well, this: %d.", puzzle.solution2()));
     }
 
 }

@@ -1,79 +1,36 @@
-package org.jaybaws.adventofcode.y2020.day10;
+package org.jaybaws.adventofcode.y2020.day11;
 import junit.framework.Assert;
 import org.jaybaws.adventofcode.Puzzle;
 import org.junit.Test;
+import java.util.Arrays;
+import java.util.List;
 
-import java.math.BigInteger;
-import java.util.*;
+public class Y2020D11PuzzleTest {
 
-public class Y2020D10PuzzleTest {
-
-    public static String[] sample1 = { "16", "10", "15", "5", "1", "11", "7", "19", "6", "12", "4" };
-    public static String[] sample2 = { "28", "33", "18", "42", "31", "14", "46", "20", "48", "47", "24", "23", "49", "45", "19", "38", "39", "11", "1", "32", "25", "35", "8", "17", "7", "9", "4", "2", "34", "10", "3" };
-
-    public static String[] sample3 = { "3", "6", "9", "12" };
-    public static String[] sample4 = { "3", "6", "7", "9", "12" };
-    public static String[] sample5 = { "3", "6", "7", "8", "9", "12" };
+    private static final List<String> sample = Arrays.asList(new String[] {"L.LL.LL.LL",  "LLLLLLL.LL",  "L.L.L..L..",  "LLLL.LL.LL",  "L.LL.LL.LL",  "L.LLLLL.LL",  "..L.L.....",  "LLLLLLLLLL",  "L.LLLLLL.L",  "L.LLLLL.LL" });
 
     @Test
-    public void part1a_sample_validationTest() {
-        List<String> data = Arrays.asList(sample1);
-        Puzzle p = new Y2020D10Puzzle(data);
-        Assert.assertEquals(7*5, p.solution1());
-    }
-
-    @Test
-    public void part1b_sample_validationTest() {
-        List<String> data = Arrays.asList(sample2);
-        Puzzle p = new Y2020D10Puzzle(data);
-        Assert.assertEquals(22*10, p.solution1());
+    public void part1_sample_validationTest() {
+        Puzzle p = new Y2020D11Puzzle(sample);
+        Assert.assertEquals(37, p.solution1());
     }
 
     @Test
     public void part1_actual_validationTest() {
-        Puzzle p = new Y2020D10Puzzle();
-        Assert.assertEquals(2277, p.solution1());
+        Puzzle p = new Y2020D11Puzzle();
+        Assert.assertEquals(2329, p.solution1());
     }
 
     @Test
-    public void part2c_sample_validationTest() {
-        List<String> data = Arrays.asList(sample3);
-        Puzzle p = new Y2020D10Puzzle(data);
-        Assert.assertEquals(1, p.solution2());
+    public void part2_sample_validationTest() {
+        Puzzle p = new Y2020D11Puzzle(sample);
+        Assert.assertEquals(26, p.solution2());
     }
-
-    @Test
-    public void part2d_sample_validationTest() {
-        List<String> data = Arrays.asList(sample4);
-        Puzzle p = new Y2020D10Puzzle(data);
-        Assert.assertEquals(2, p.solution2());
-    }
-    @Test
-    public void part2e_sample_validationTest() {
-        List<String> data = Arrays.asList(sample5);
-        Puzzle p = new Y2020D10Puzzle(data);
-        Assert.assertEquals(4, p.solution2());
-    }
-
-    @Test
-    public void part2a_sample_validationTest() {
-        List<String> data = Arrays.asList(sample1);
-        Puzzle p = new Y2020D10Puzzle(data);
-        Assert.assertEquals(new BigInteger("8"), p.solution2());
-    }
-
-    @Test
-    public void part2b_sample_validationTest() {
-        List<String> data = Arrays.asList(sample2);
-        Puzzle p = new Y2020D10Puzzle(data);
-        Assert.assertEquals(new BigInteger("19208"), p.solution2());
-    }
-
 
     @Test
     public void part2_actual_validationTest() {
-        Puzzle p = new Y2020D10Puzzle();
-        Assert.assertEquals(new BigInteger("37024595836928"), p.solution2());
+        Puzzle p = new Y2020D11Puzzle();
+        Assert.fail();
     }
 
 }
