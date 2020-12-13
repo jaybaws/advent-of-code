@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Y2020D12Puzzle extends BasePuzzle {
 
+    public static final boolean TRACE = false;
+
     public Y2020D12Puzzle(List<String> altInput) {
         super(altInput);
     }
@@ -13,19 +15,33 @@ public class Y2020D12Puzzle extends BasePuzzle {
 
     @Override
     protected void prepare() {
-        // @TODO!
+
     }
 
     @Override
     public Integer solution1() {
-        return null; // @TODO!
+        Position shipPosition = new Position(0, 0, Direction.E);
+
+        for (String s : puzzleInput) {
+            Move.fromString(s).doMove(shipPosition);
+        }
+
+        return shipPosition.getManhattanDistance(0, 0);
     }
 
     @Override
     public Integer solution2() {
-        prepare(); // SAFETY? ASSURE WE'RE WORKING OF FRESH INPUT, AND NOT OF Q1 OUTPUT!
+        Position ship = new Position(0, 0, Direction.E);
+        Position waypoint = new Position(10, 1, null);
 
-        return null; // @TODO!
+        for (String s : puzzleInput) {
+            Move.fromString(s).doMove(ship, waypoint);
+            if (TRACE)
+                System.out.println(String.format("waypoint=%s ship=%s.", waypoint, ship));
+        }
+
+        return ship.getManhattanDistance(0, 0);
+
     }
 
     public static void main(String[] args) {
