@@ -1,22 +1,22 @@
-package org.jaybaws.adventofcode.y2020.day17;
+package org.jaybaws.adventofcode.y2020.day18;
 import org.jaybaws.adventofcode.*;
 import java.util.*;
 
-public class Y2020D17Puzzle extends BasePuzzle {
+public class Y2020D18Puzzle extends BasePuzzle {
 
     public static final boolean TRACE = true;
 
-    public Y2020D17Puzzle() {
-        super();
-    }
-
-    public Y2020D17Puzzle(List<String> altInput) {
+    public Y2020D18Puzzle(List<String> altInput) {
         super(altInput);
     }
 
     @Override
     protected void prepare() {
         // @TODO!
+    }
+
+    public Y2020D18Puzzle() {
+        super();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Y2020D17Puzzle extends BasePuzzle {
     }
 
     public static void main(String[] args) {
-        Puzzle puzzle = new Y2020D17Puzzle();
+        Puzzle puzzle = new Y2020D18Puzzle();
 
         System.out.println(String.format("\n\nQ1?\n--> Well, this: %d.", puzzle.solution1()));
         System.out.println(String.format("\n\nQ2?\n--> Well, this: %d.", puzzle.solution2()));
