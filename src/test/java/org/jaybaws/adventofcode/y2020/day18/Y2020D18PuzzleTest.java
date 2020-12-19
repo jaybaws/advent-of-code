@@ -6,8 +6,6 @@ import java.util.Arrays;
 
 public class Y2020D18PuzzleTest {
 
-    static final String[] sample1 = new String[] {  };
-
     @Test
     public void simple_a_Test() {
         Assert.assertEquals(71, (long) Y2020D18Puzzle.calc1("1 + 2 * 3 + 4 * 5 + 6"));
