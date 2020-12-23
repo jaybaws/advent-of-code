@@ -1,6 +1,5 @@
 package org.jaybaws.adventofcode.y2020.day22;
 import junit.framework.Assert;
-import org.jaybaws.adventofcode.Puzzle;
 import org.junit.Test;
 import java.util.*;
 
@@ -36,6 +35,6 @@ public class Y2020D22PuzzleTest {
     public void part2_sample_validationTest() { Assert.assertEquals(291, (long) new Y2020D22Puzzle(sample1).solution2()); }
 
     @Test
-    public void part2_actual_validationTest() { Assert.assertEquals(-1, (long) new Y2020D22Puzzle().solution2()); }
+    public void part2_actual_validationTest() { Assert.assertEquals(32534, (long) new Y2020D22Puzzle().solution2()); }
 
 }

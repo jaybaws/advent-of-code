@@ -1,4 +1,5 @@
 package org.jaybaws.adventofcode.y2020.day22;
+import org.apache.commons.lang3.StringUtils;
 import org.jaybaws.adventofcode.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,8 +28,6 @@ public class Y2020D22Puzzle extends BasePuzzle {
                 deck.put(name, cards);
             }
         }
-
-        System.out.println(deck);
     }
 
     public Y2020D22Puzzle() {
@@ -79,7 +78,8 @@ public class Y2020D22Puzzle extends BasePuzzle {
             round++;
         }
 
-        System.out.println("Game ended after round: " + round);
+        if (TRACE)
+            System.out.println("Game ended after round: " + round);
 
         int maxScore = 0;
         for (String n : deck.keySet()) {
@@ -94,7 +94,8 @@ public class Y2020D22Puzzle extends BasePuzzle {
             if (score > maxScore)
                 maxScore = score;
 
-            System.out.println(n + " scored " + score);
+            if (TRACE)
+                System.out.println(n + " scored " + score);
         }
 
         return (long) maxScore;
@@ -102,13 +103,20 @@ public class Y2020D22Puzzle extends BasePuzzle {
 
     @Override
     public Long solution2() {
-        return null; // @TODO!
+        String input = String.join("\n", puzzleInput);
+        List<Integer> p1cards = Arrays.stream(StringUtils.substringBetween(input, "Player 1:\n", "\n\n").split("\n")).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
+        List<Integer> p2cards = Arrays.stream(StringUtils.substringAfter(input, "Player 2:\n").split("\n")).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
+
+        Game g = new Game(1, p1cards, p2cards);
+        g.play();
+
+        return g.winnersScore();
     }
 
     public static void main(String[] args) {
         Puzzle puzzle = new Y2020D22Puzzle();
 
-        System.out.println(String.format("\n\nQ1?\n--> Well, this: %d.", puzzle.solution1())); // 32211 = too high!
+        System.out.println(String.format("\n\nQ1?\n--> Well, this: %d.", puzzle.solution1()));
         System.out.println(String.format("\n\nQ2?\n--> Well, this: %s.", puzzle.solution2()));
     }
 
