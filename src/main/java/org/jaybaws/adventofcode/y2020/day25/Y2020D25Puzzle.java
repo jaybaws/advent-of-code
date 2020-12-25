@@ -19,9 +19,39 @@ public class Y2020D25Puzzle extends BasePuzzle {
         super();
     }
 
+    public static long transform(long subjectNumber, long loopSize) {
+        long result = 1;
+        for (long l = 1; l <= loopSize; l++) {
+            result *= subjectNumber;
+            result = result % 20201227;
+        }
+
+        return result;
+    }
+
+    public static int findLoopSize(long key, long subjectNumber) {
+        int value = 1;
+
+        int size = 0;
+        while (value != key) {
+            value *= subjectNumber;
+            value %= 20201227;
+            size++;
+        }
+
+        return size;
+    }
+
     @Override
-    public Object solution1() {
-        return null; // @TODO!
+    public Long solution1() {
+        long pkey1 = Long.parseLong(puzzleInput.get(0));
+        long loopSize1 = findLoopSize(pkey1, 7);
+        long pkey2 = Long.parseLong(puzzleInput.get(1));
+        long loopSize2 = findLoopSize(pkey2, 7);
+
+        long encryptionKey = transform(pkey1, loopSize2);
+
+        return encryptionKey;
     }
 
     @Override
